@@ -1,0 +1,57 @@
+
+<div class="alert alert-danger" *ngIf="errorMsg">
+    {{ errorMsg }}
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <input type="text" class="form-control" name="searchKey" placeholder="Search..." [(ngModel)]="searchKey" />
+    </div>
+</div>
+
+<div class="d-flex justify-content-between mb-4">
+    <h4>Employee List</h4>
+    <button class="btn btn-outline-primary btn-sm" routerLink="add">
+        <i class="fa fa-plus" aria-hidden="true"></i>Add
+    </button>    
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th (click)="sort('name')">
+                Name
+                <i class="fa" [ngClass]="{'fa-sort-asc':!reverse,'fa-sort-desc':reverse}" aria-hidden="true"></i>
+                <!-- <i class="fa fa-sort-desc" aria-hidden="true" *ngIf="reverse"></i> -->
+            </th>
+            <th (click)="sort('salary')">
+                Salary
+                <i class="fa" [ngClass]="{'fa-sort-asc':!reverse,'fa-sort-desc':reverse}" aria-hidden="true"></i>
+            </th>
+            <th (click)="sort('post')">
+                Post
+                <i class="fa" [ngClass]="{'fa-sort-asc':!reverse,'fa-sort-desc':reverse}" aria-hidden="true"></i>
+            </th>
+            <th (click)="sort('department')">
+                Department
+                <i class="fa" [ngClass]="{'fa-sort-asc':!reverse,'fa-sort-desc':reverse}" aria-hidden="true"></i>
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employees | orderBy:key:reverse | filter:searchKey | paginate:{itemsPerPage:4,currentPage:p}">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.salary }}</td>
+            <td>{{ emp.post }}</td>
+            <td>{{ emp.department }}</td>
+            <td>
+                <a [routerLink]="['edit',emp.id]">Edit</a> | <a (click)="deleteEmp(emp.id)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="p=$event"></pagination-controls>

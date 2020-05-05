@@ -1,0 +1,53 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "anmol",
+      "salary": 30000,
+      "post": "Module Lead",
+      "department": "JS"
+    },
+    {
+      "id": 2,
+      "name": "suhas kawale",
+      "salary": "27000",
+      "post": "Module Lead",
+      "department": "PHP"
+    },
+    {
+      "name": "rushi",
+      "salary": "20000",
+      "post": "Developer",
+      "department": "JS",
+      "id": 3
+    },
+    {
+      "name": "kajal",
+      "salary": "21000",
+      "post": "Developer",
+      "department": "PHP",
+      "id": 4
+    },
+    {
+      "name": "sonal",
+      "salary": "45000",
+      "post": "Team Lead",
+      "department": "JS",
+      "id": 5
+    },
+    {
+      "name": "rahul",
+      "salary": "27000",
+      "post": "Developer",
+      "department": "Android",
+      "id": 6
+    },
+    {
+      "name": "akshay",
+      "salary": "42000",
+      "post": "Team Lead",
+      "department": "Java",
+      "id": 7
+    }
+  ]
+}

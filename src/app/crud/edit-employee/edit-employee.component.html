@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="container col-sm-5">
+      <h4>Edit Employee</h4>
+      <form [formGroup]="employee" (ngSubmit)="edit()">
+        <div class="form-group">
+          <!-- <label>Name:</label> -->
+          <input type="hidden" class="form-control" formControlName="id" />
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name" />
+          </div>
+        <div class="form-group">
+          <label>Salary:</label>
+          <input type="text" class="form-control" formControlName="salary" placeholder="Enter Salary" />
+        </div>
+        <div class="form-group">
+          <label>Post:</label><br>
+            <input type="radio" name="post" formControlName="post" value="Developer" />Developer&nbsp;&nbsp;
+            <input type="radio" name="post" formControlName="post" value="Module Lead" />Module Lead&nbsp;&nbsp;
+            <input type="radio" name="post" formControlName="post" value="Team Lead" />Team Lead&nbsp;&nbsp;
+        </div>
+        <div class="form-group">
+            <label>Department:</label>
+            <select class="form-control" formControlName="department">
+                <option value="null">Select Department</option>
+                <option *ngFor="let dept of departments" [value]="dept">{{dept}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary btn-sm">Edit Employee</button>&nbsp;
+            <!-- <button type="reset" class="btn btn-outline-primary btn-sm">Reset</button> -->
+            <button type="button" class="btn btn-outline-primary btn-sm" routerLink="/employees">Back</button>
+        </div>
+      </form>
+      <!-- <p>{{ employee.value | json }}</p> -->
+    </div>
+  </div>
+  

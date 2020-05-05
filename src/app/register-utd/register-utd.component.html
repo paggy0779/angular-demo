@@ -1,0 +1,75 @@
+<hr>
+<div class="row">
+  <div class="container col-sm-5">
+    <h4 class="text-center">Template Driven Form</h4>
+    <form #userForm="ngForm" (ngSubmit)="register(userForm)" autocomplete="off">
+      <div class="form-group">
+        <label>Email:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Email"
+          name="uemail"
+          ngModel
+          #uemail="ngModel"
+          required
+          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+        />
+      </div>
+      <div class="alert alert-danger" *ngIf="uemail.invalid && (uemail.dirty || uemail.touched)">
+        <div *ngIf="uemail.errors.required">Email Required</div>
+        <div *ngIf="uemail.errors.pattern">Please enter a valid email</div>
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Password"
+          name="upwd"
+          #upwd="ngModel"
+          ngModel
+          required
+          minlength="6"
+        />
+      </div>
+      <div class="alert alert-danger" *ngIf="upwd.invalid && (upwd.dirty || upwd.touched)">
+        <div *ngIf="upwd.errors.required">Password Required</div>
+        <div *ngIf="upwd.errors.minlength">Password should be atleast 6 character.</div>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Confirm Password"
+          name="ucpwd"
+          #ucpwd="ngModel"
+          ngModel
+        />
+      </div>
+      <div *ngIf="ucpwd.value != upwd.value && (ucpwd.dirty || ucpwd.touched)" class="alert alert-danger">
+        Confirm Password not matched with Password.
+      </div>
+      <div class="form-group">
+        <label>Gender:</label>
+        <select name="ugender" class="form-control" ngModel required>
+          <option value="">Select Gender</option>
+          <option *ngFor="let g of gender" [value]="g">{{ g }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" name="terms" ngModel required />
+          I accept the terms & conditions for the registration.
+        </label>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
+          Register
+        </button>
+      </div>
+    </form>
+    <p>{{ userForm.value | json }}</p>
+  </div>
+</div>

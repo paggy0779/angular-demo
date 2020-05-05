@@ -1,0 +1,18 @@
+<div class="container">
+  <app-register [title]="formTitle" (childEvent)="addStudent($event)"></app-register>
+
+  <hr/>
+  
+  <div *ngIf="students.length; else noData">
+    <ul>
+      <li *ngFor="let std of students"> {{ std.fname+" "+std.lname }} </li>
+    </ul>
+  </div>
+  
+  <ng-template #noData>
+    <p>Please add atleast one student</p>
+  </ng-template>
+  
+</div>
+
+

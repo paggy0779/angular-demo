@@ -1,0 +1,75 @@
+<div class="container">
+  <h1 class="alert alert-primary">
+    {{ heading }}
+  </h1>
+  <hr [color]="seperatorcolor" />
+  <h3>
+    <!-- <input type="button" value="Add Fruit" (click) = "addfruit()"> -->
+    Different Type of Fruits available : {{ fruits.length }}
+  </h3>
+  <hr color="{{ seperatorcolor }}" />
+  <input type="radio" name="language" (click)="changelanguage('hindi')" /> Hindi
+  <input
+    type="radio"
+    name="language"
+    (click)="changelanguage('english')"
+    checked
+  />
+  English
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      (click)="checkprice(i)"
+      *ngFor="let fruit of fruits; let i = index"
+    >
+      {{ i + 1 }}:{{ fruit }}
+    </li>
+  </ul>
+  <br />
+  <h4 [ngSwitch]="selectedfruitIndex" class="alert alert-danger">
+    <div *ngSwitchCase="selectedfruitIndex">
+      {{ fruits[selectedfruitIndex] }} price is
+      {{ fruits_price[selectedfruitIndex] }}
+    </div>
+    <!-- <div *ngSwitchCase="1">{{fruits[1]}} price is {{fruits_price[1]}}</div>
+    <div *ngSwitchCase="2">{{fruits[2]}} price is {{fruits_price[2]}}</div>
+    <div *ngSwitchCase="3">{{fruits[3]}} price is {{fruits_price[3]}}</div>
+    <div *ngSwitchCase="4">{{fruits[4]}} price is {{fruits_price[4]}}</div> -->
+    <div *ngSwitchDefault>Nothing selected</div>
+  </h4>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        Customer Name:
+        <input type="text" name="customername" [(ngModel)]="customername" />
+      </div>
+      <div class="col-sm-6">
+        Customer Mobile:
+        <input type="text" name="customermobile" [(ngModel)]="customermobile" />
+      </div>
+      <div class="col-sm-6">
+        Customer Email:
+        <input type="email" name="customeremail" [(ngModel)]="customeremail" />
+      </div>
+    </div>
+    <br />
+    <div
+      *ngIf="customeremail == ''; then mobileorder; else emailorder"
+      class="bg-secondary text-white"
+    ></div>
+    <ng-template #mobileorder>
+      <div class="bg-secondary text-white">
+        Dear {{ customername }} you will soon get the confirmation of your order
+        on your entered Mobile
+        {{ customermobile }}
+      </div>
+    </ng-template>
+    <ng-template #emailorder>
+      <div class="bg-secondary text-white">
+        Dear {{ customername }} you will soon get the confirmation of your order
+        on your entered email
+        {{ customeremail }}
+      </div>
+    </ng-template>
+  </div>
+</div>
